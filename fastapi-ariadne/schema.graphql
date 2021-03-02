@@ -1,0 +1,54 @@
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type User {
+    id: ID!
+    email: String!
+    password: String!
+}
+
+type Item {
+    id: ID!
+    title: String!
+    description: String!
+    completed: Boolean!
+    ownerId: ID!
+}
+
+type ItemResult {
+    errors: [String]
+    item: Item
+}
+
+type ItemsResult {
+    errors: [String]
+    items: [Item]
+}
+
+type InsertResult {
+    errors: [String]
+    id: ID
+}
+
+type TokenResult {
+    errors: [String]
+    token: String
+}
+
+type Query {
+    items: ItemsResult!
+    item(itemId: ID!): ItemResult!
+}
+
+type Mutation {
+    createItem(title: String!, description: String!): InsertResult!
+    createUser(email: String!, password: String!): InsertResult!
+    createToken(email: String!, password: String!): TokenResult!
+}
+
+type Subscription {
+    new_item(token:String!): InsertResult!
+}
