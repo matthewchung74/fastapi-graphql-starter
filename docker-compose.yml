@@ -20,7 +20,7 @@ services:
     volumes:
       - ./fastapi-ariadne:/app
     env_file:
-      - .env
+      - ./.env
     image: backend_base
   test:
     depends_on:
@@ -31,5 +31,5 @@ services:
     links:
       - db
     env_file:
-      - .env
+      - ./.env
 
