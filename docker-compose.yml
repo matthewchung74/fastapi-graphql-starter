@@ -16,7 +16,6 @@ services:
         RABBITMQ_DEFAULT_PASS: guest
         RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-rabbit log_levels [{connection,error}]"
     ports:
-        - "5672:5672"
         - "15672:15672"
   backend:
     depends_on:
@@ -27,5 +26,4 @@ services:
       dockerfile: backend.dockerfile
     ports:
       - "8000:8000"
-      - "5678:5678"
     image: backend_base
