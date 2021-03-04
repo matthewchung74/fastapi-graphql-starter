@@ -5,6 +5,7 @@ from pydantic import BaseSettings
 
 secret_key = os.getenv("SECRET_KEY") if os.getenv("SECRET_KEY") else "abc"
 db_host = os.getenv("DB_HOST") if os.getenv("DB_HOST") else "localhost"
+queue = os.getenv("QUEUE") if os.getenv("QUEUE") else "localhost"
 
 class Settings(BaseSettings):
     SECRET_KEY = secret_key

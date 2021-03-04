@@ -50,5 +50,5 @@ type Mutation {
 }
 
 type Subscription {
-    new_item(token:String!): InsertResult!
+    reviewItem(token:String!): InsertResult!
 }

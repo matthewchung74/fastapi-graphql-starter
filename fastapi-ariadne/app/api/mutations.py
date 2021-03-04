@@ -1,5 +1,4 @@
-from datetime import timedelta
-
+import datetime 
 from ariadne import MutationType, convert_kwargs_to_snake_case
 from graphql import GraphQLError
 
@@ -7,8 +6,8 @@ from app.db import db
 from app.core import security
 from app.core import config
 from app.core.utils import MyGraphQLError
-
-from app.core import store
+from app.core import config
+from app.db import rabbit
 
 @convert_kwargs_to_snake_case
 async def resolve_create_item(obj, info, title, description):
@@ -17,8 +16,7 @@ async def resolve_create_item(obj, info, title, description):
         raise MyGraphQLError(code=401, message="User not authenticated")
     item_id = await db.create_item(title=title, description=description, owner_id=user["id"])
 
-    for queue in store.queues:
-        await queue.put(item_id)
+    await rabbit.produceItem(item_id=item_id)
 
     return {
         "id": item_id
@@ -49,7 +47,7 @@ async def resolve_login(obj, info, email, password):
     if not is_authenticated:
         raise MyGraphQLError(code=401, message="Invalid password")
 
-    access_token_expires = timedelta(seconds=config.settings.ACCESS_TOKEN_EXPIRE_SECONDS)
+    access_token_expires = datetime.timedelta(seconds=config.settings.ACCESS_TOKEN_EXPIRE_SECONDS)
     token = security.create_access_token(fetched_user["id"], expires_delta=access_token_expires)
     return {"token":token}
 

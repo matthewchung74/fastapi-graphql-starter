@@ -25,7 +25,22 @@ services:
     build:
       context: ./fastapi-ariadne
       dockerfile: backend.dockerfile
+    command: bash -c "alembic -n db upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"                                              
     ports:
       - "8000:8000"
       - "5678:5678"
+    env_file:
+      - ./.env
     image: backend_base
+  test:
+    depends_on:
+      - db
+      - queue
+    working_dir: /app
+    image: backend_base
+    command: pytest
+    links:
+      - db
+    env_file:
+      - ./.env
+

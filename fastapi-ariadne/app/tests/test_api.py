@@ -105,8 +105,8 @@ async def test_create_item(server, host, storage):
 @pytest.mark.asyncio
 async def test_subscription(server, host, storage):
     query = """
-        subscription getItemUpdates($token: String!) {
-            new_item(token: $token) {
+        subscription reviewItem($token: String!) {
+            reviewItem(token: $token) {
                 errors
                 id
             }
@@ -136,4 +136,4 @@ async def test_subscription(server, host, storage):
     await ws.close()
     json_response = json.loads(received)
     assert ('errors' in json_response) == False
-    assert json_response["payload"]['data']['new_item']['id'] is not None
+    assert json_response["payload"]['data']['reviewItem']['id'] is not None
