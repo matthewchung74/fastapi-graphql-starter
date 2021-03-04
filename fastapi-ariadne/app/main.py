@@ -46,6 +46,7 @@ async def shutdown():
 type_defs = load_schema_from_path("schema.graphql")
 resolvers = [query, mutation, subscription]
 schema = make_executable_schema(type_defs, resolvers, snake_case_fallback_resolvers)
+
 graphQL = GraphQL(
     schema, 
     error_formatter=my_format_error, 
