@@ -7,16 +7,5 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 script:
-  - ls -a
   - docker-compose -f docker-compose.yml  -f docker-compose.dev.yml build
-<<<<<<< HEAD
   - docker-compose -f docker-compose.yml  -f docker-compose.dev.yml run test
-
-
-  
-=======
-  - docker-compose -f docker-compose.yml  -f docker-compose.dev.yml build run test
-
-
-  
->>>>>>> 35f41877989e67af83f4e7668eb80fb2eb2f17d5
