@@ -1,5 +1,4 @@
-[![](https://travis-ci.org/matthewchung74/fastapi-graphql-starter.svg?branch=main)](https://travis-ci.org/matthewchung74/fastapi-graphql-starter)
-
+[![Build Status](https://travis-ci.com/matthewchung74/fastapi-graphql-starter.svg?branch=main)](https://travis-ci.com/matthewchung74/fastapi-graphql-starter)
 # Full Stack FastAPI with GraphQL - Base Project Generator
 
 Generate a backend and frontend (wip) stack using Python, including interactive GraphQL API documentation.
