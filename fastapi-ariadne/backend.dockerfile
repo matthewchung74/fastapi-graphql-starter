@@ -6,7 +6,7 @@ WORKDIR /app/
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-COPY * /app/
+COPY . /app/
 
 RUN pip install 'poetry==1.1.4'.
 RUN poetry config virtualenvs.create false

@@ -93,6 +93,7 @@ async def create_item(server, host, storage):
             "variables": {'title': 'title', 'description': 'description'},
             })
         json_response = json.loads(response.text)
+        print(json_response)
         assert ('errors' in json_response) == False
         assert (json_response["data"]['createItem']['id'] is not None)
 
@@ -136,4 +137,5 @@ async def test_subscription(server, host, storage):
     await ws.close()
     json_response = json.loads(received)
     assert ('errors' in json_response) == False
+    print(json_response)
     assert json_response["payload"]['data']['reviewItem']['id'] is not None
