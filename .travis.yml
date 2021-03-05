@@ -8,5 +8,8 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 script:
   - ls -a
-  - docker-compose build
-  - docker-compose run test
+  - docker-compose -f docker-compose.yml  -f docker-compose.dev.yml build
+  - docker-compose -f docker-compose.yml  -f docker-compose.dev.yml build run test
+
+
+  
